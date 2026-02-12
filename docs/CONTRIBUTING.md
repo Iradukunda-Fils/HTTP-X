@@ -33,5 +33,14 @@ Join the vanguard of systems engineering:
 *   **NUMA Locality Tuning**: Automatic slab placement on the core's local NUMA node.
 *   **SIMD Trie Ops**: Utilizing AVX-512 or Neon for even faster path resolution.
 
+## Where to Start?
+
+New to the project? We recommend this onboarding path:
+
+1.  **Understand the Slab**: Read `crates/httpx-dsa/src/slab.rs` to see how we bypass the standard allocator for hardware-aligned memory.
+2.  **Trace a Packet**: Open `crates/httpx-transport/src/dispatcher.rs` and follow the `on_packet` flow from ring entry to predictive push.
+3.  **Explore the Swarm**: See how weights converge across cores in `crates/httpx-cluster/src/orchestrator.rs`.
+4.  **Run a Benchmark**: Execute `cargo run --release --example fast_api` and observe the latency logs in a production-mode environment.
+
 ---
 *Building for the wire.*

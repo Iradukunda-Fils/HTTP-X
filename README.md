@@ -54,6 +54,19 @@ flowchart TD
 | **Memory Access** | **Zero Copy** | Mandatory | SecureSlab (HugeTLB) |
 | **Cache Efficiency** | **O(1) Trie** | Maximum | Aligned (64B) TrieNodes |
 
+## Repository Navigation (Crate Map)
+
+The HTTP-X workspace is partitioned to maximize cache locality and minimize build-time dependencies:
+
+| Crate | Responsibility | Key Files |
+| :--- | :--- | :--- |
+| **httpx-core** | Shared protocols & SAI definitions | `config.rs`, `engine.rs` |
+| **httpx-dsa** | Hardware-aware structures | `slab.rs` (Memory), `trie.rs` (Intent) |
+| **httpx-transport** | The Mechanical Engine | `dispatcher.rs` (io_uring Ring) |
+| **httpx-cluster** | Swarm synchronization | `orchestrator.rs`, `gossip.rs` |
+| **httpx-codec** | Zero-copy packet builders | `templates.rs` (GSO) |
+| **httpx-crypto** | In-place encryption | `lib.rs` (SAED) |
+
 ## Deployment & Onboarding
 
 Ready to break the bottleneck?
