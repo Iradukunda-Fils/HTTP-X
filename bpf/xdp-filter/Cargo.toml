@@ -1,0 +1,17 @@
+[package]
+name = "xdp-filter"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+aya-ebpf = "0.1"
+aya-log-ebpf = "0.1"
+network-types = "0.0.5"
+
+[build-dependencies]
+aya-build = "0.1"
+
+[[bin]]
+name = "xdp-filter"
+path = "src/main.rs"
+test = false

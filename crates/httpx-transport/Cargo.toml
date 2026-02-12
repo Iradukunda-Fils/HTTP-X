@@ -1,0 +1,18 @@
+[package]
+name = "httpx-transport"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+httpx-core.workspace = true
+httpx-crypto.workspace = true
+httpx-dsa = { path = "../httpx-dsa" }
+httpx-cluster = { path = "../httpx-cluster" }
+tokio = { workspace = true }
+bytes.workspace = true
+tracing.workspace = true
+nix = { workspace = true, features = ["mman", "signal", "sched"] }
+socket2.workspace = true
+crossbeam-epoch = "0.9.18"
+libc.workspace = true
+io-uring = "0.7"

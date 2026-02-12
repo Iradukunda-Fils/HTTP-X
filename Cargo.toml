@@ -1,0 +1,114 @@
+[package]
+name = "http-x"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = [
+    "crates/httpx-core",
+    "crates/httpx-dsa",
+    "crates/httpx-crypto",
+    "crates/httpx-transport",
+    "crates/httpx-cluster",
+    "bpf/xdp-filter",
+]
+resolver = "2"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Lead Systems Architect <architect@httpx.dev>"]
+license = "MIT"
+
+[workspace.lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(kani)'] }
+
+[workspace.dependencies]
+httpx-core = { path = "crates/httpx-core" }
+httpx-dsa = { path = "crates/httpx-dsa" }
+httpx-crypto = { path = "crates/httpx-crypto" }
+httpx-transport = { path = "crates/httpx-transport" }
+httpx-codec = { path = "crates/httpx-codec" }
+tokio = { version = "1", features = ["full"] }
+bytes = { version = "1", default-features = false }
+futures = "0.3"
+serde = { version = "1", features = ["derive"] }
+toml = "0.5"
+num_cpus = "1.0"
+nix = { version = "0.29", features = ["mman"] }
+zeroize = { version = "1.8", features = ["derive"] }
+chacha20poly1305 = "0.10"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+criterion = "0.5"
+iai = "0.1"
+loom = "0.7"
+libc = "0.2"
+num-traits = "0.2"
+socket2 = { version = "0.5", features = ["all"] }
+io-uring = "0.7"
+tempfile = "3"
+core_affinity = "0.8"
+static_assertions = "1.1"
+
+[dependencies]
+httpx-transport = { path = "crates/httpx-transport" }
+httpx-dsa = { path = "crates/httpx-dsa" }
+httpx-codec = { path = "crates/httpx-codec" }
+httpx-core = { path = "crates/httpx-core" }
+tokio = { version = "1", features = ["full"] }
+tracing.workspace = true
+tracing-subscriber = "0.3"
+nix = { workspace = true, features = ["mman", "signal", "sched"] }
+perf-event = "0.4.8"
+io-uring = { workspace = true }
+tempfile = { workspace = true }
+socket2 = { workspace = true }
+
+[dev-dependencies]
+loom = { workspace = true }
+criterion = { workspace = true }
+httpx-cluster = { path = "crates/httpx-cluster" }
+httpx-transport = { path = "crates/httpx-transport" }
+httpx-crypto = { path = "crates/httpx-crypto" }
+httpx-codec = { path = "crates/httpx-codec" }
+httpx-core = { path = "crates/httpx-core" }
+httpx-dsa = { path = "crates/httpx-dsa" }
+chacha20poly1305 = { workspace = true }
+zeroize = { workspace = true }
+
+[features]
+loom_test = []
+
+[[example]]
+name = "server_demo"
+path = "examples/server_demo.rs"
+
+[[bench]]
+name = "protocol_bench"
+path = "benches/protocol_bench.rs"
+harness = false
+
+[[bench]]
+name = "line_rate"
+path = "benches/line_rate.rs"
+harness = false
+
+[[bench]]
+name = "mechanical_sympathy"
+path = "benches/mechanical_sympathy.rs"
+harness = false
+
+[[test]]
+name = "convergence_tests"
+path = "tests/convergence_tests.rs"
+
+[[bench]]
+name = "payload_prop"
+harness = false

@@ -1,0 +1,15 @@
+[package]
+name = "httpx-core"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+nix = { workspace = true, features = ["mman"] }
+libc.workspace = true
+zeroize.workspace = true
+tokio = { workspace = true }
+serde = { workspace = true }
+tracing = { workspace = true }
+crossbeam-epoch = "0.9"
+httpx-dsa = { path = "../httpx-dsa" }
+num_cpus.workspace = true

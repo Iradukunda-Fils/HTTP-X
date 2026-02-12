@@ -1,0 +1,11 @@
+[package]
+name = "httpx-codec"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+httpx-core.workspace = true
+httpx-dsa.workspace = true
+serde.workspace = true
+# Probability arithmetic
+num-traits = "0.2"

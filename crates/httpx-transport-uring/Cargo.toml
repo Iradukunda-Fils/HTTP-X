@@ -1,0 +1,11 @@
+[package]
+name = "httpx-transport-uring"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+httpx-core.workspace = true
+tokio = { workspace = true, features = ["net", "rt"] }
+bytes.workspace = true
+tracing.workspace = true
+# io-uring = "0.6" # Future integration

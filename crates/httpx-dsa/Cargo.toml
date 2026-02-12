@@ -1,0 +1,24 @@
+[package]
+name = "httpx-dsa"
+version.workspace = true
+edition.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+# Basic utilities for hardware-aligned memory management
+nix = { workspace = true, features = ["mman"], optional = true }
+libc = { workspace = true, optional = true }
+bytes = { workspace = true, default-features = false }
+# Alignment and zeroizing primitives
+zeroize = { workspace = true, features = ["derive"] }
+tracing.workspace = true
+crossbeam-epoch = "0.9.18"
+static_assertions = "1.1"
+
+[features]
+default = ["std"]
+std = ["nix", "libc"]
+# eBPF/Offload support
+no_std = []
