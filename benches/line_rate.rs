@@ -1,6 +1,6 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use httpx_dsa::LinearIntentTrie;
-use httpx_transport::{engine::PredictiveEngine, session::Session};
+use httpx_core::{PredictiveEngine, Session};
 use std::net::SocketAddr;
 use std::sync::Arc;
 

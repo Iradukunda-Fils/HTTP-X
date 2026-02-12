@@ -19,9 +19,17 @@ fn bench_payload_propagation(c: &mut Criterion) {
     let slab = SecureSlab::new(64);
     let socket = rt.block_on(UdpSocket::bind("127.0.0.1:0")).unwrap();
     let addr = socket.local_addr().unwrap();
-    let (_tx, rx) = tokio::sync::mpsc::channel(10);
+    let (_control_tx, rx) = tokio::sync::mpsc::channel(10);
+    let (learn_tx, _learn_rx) = tokio::sync::mpsc::unbounded_channel();
     
-    let mut dispatcher = rt.block_on(CoreDispatcher::new_with_socket(0, socket, rx, ServerConfig::default(), trie.clone())).unwrap();
+    let mut dispatcher = rt.block_on(CoreDispatcher::new_with_socket(
+        0, 
+        socket, 
+        rx, 
+        ServerConfig::default(), 
+        trie.clone(), 
+        learn_tx
+    )).unwrap();
 
     c.benchmark_group("Payload Fast-Path")
         .bench_function("Trie-to-Wire Latency", |b| {
