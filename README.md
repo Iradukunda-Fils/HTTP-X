@@ -58,9 +58,9 @@ flowchart TD
 
 Ready to break the bottleneck?
 
-1.  **Quick Start**: See [GETTING_STARTED.md](GETTING_STARTED.md) for the 5-minute clone-to-benchmark path.
-2.  **Architecture**: Explore the [ARCHITECTURE.md](ARCHITECTURE.md) for the technical specification of the SAI.
-3.  **Contribute**: Join the Sovereign Project via [CONTRIBUTING.md](CONTRIBUTING.md).
+1.  **Quick Start**: See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) for the 5-minute clone-to-benchmark flow.
+2.  **Architecture**: Deep-dive into the [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) technical specification.
+3.  **Contribute**: View the full [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) to join the Sovereign Project.
 
 ## License
 
